@@ -1,0 +1,87 @@
+<%- include("./partials/header") %>
+
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">Books</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Take a look at my collection of Books! <br> Add and Edit the reviews once finished a book!</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button onclick="jumpToSection('Books')" class="btn btn-primary btn-lg px-4 gap-3">Click to take a look at Books</button>
+      </div>
+      <br>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <form action="/books/id" method="get">
+            <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Sort by id</button>
+        </form>
+        <form action="/books/rate" method="get">
+            <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Sort by rate</button>
+        </form>
+        <form action="/books/date" method="get">
+            <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Sort by date</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="album py-5 bg-body-tertiary" id="Books">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <!-- previous teams -->
+        <% for (let i = 0; i < books.length; i++) { %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <% //if (pic[i]) { %>
+            <img src="<%= books[i].url %>" alt="Book Cover" width="175" height="250">
+            <% //} %>
+            <div class="card-body">
+              <p class="card-text">Book ID: <%= books[i].id %></p>
+              <p class="card-text">Book Name: <%= books[i].book_name %></p>
+              <p class="card-text">Book Name: <%= books[i].author %></p>
+              <p class="card-text">Date Read: <%= books[i].date %></p>
+              <p class="card-text">How strongly I recommend it: <%= books[i].rate %>/10</p>
+              <p class="card-text">Book recap: <%= books[i].recap %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <form action=<%= "/viewBook/" + books[i].id %> method="get">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">View</button>
+                    </form>
+                    <form action=<%= "/deleteBook/" + books[i].id %> method="get">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                    </form>
+                    <form action= <%= "/editBook/" + books[i].id %>  method="get">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+        <!-- add new team -->
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="/images/102450202.webp" alt="Book Cover" width="175" height="250">
+              <div class="card-body">
+                <p class="card-text">Add Books and Notes!</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="/addBook" method="GET">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">Add</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function jumpToSection(sectionId) {
+        var element = document.getElementById(sectionId);
+        element.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+    </script>
+
+<%- include("./partials/footer") %>

@@ -1,0 +1,70 @@
+<%- include ("./partials/header.ejs") %>
+
+<div class="px-4 py-5 my-5 text-center">
+    <div class="col-lg-6 mx-auto">
+      <% if (! (locals.index + 1)) { %>
+          <form action="/submitBook" method="POST">
+            <div class="mb-3">
+              <div>Book Name</div>
+              <input type="input" class="form-control" name="book_name">
+            </div>
+            <div class="mb-3">
+              <div>Author</div>
+              <input type="input" class="form-control" name="author">
+            </div>
+            <div class="mb-3">
+                <div>Rate (n/10)</div>
+              <input type="input" class="form-control" name="rate">
+            </div>
+            <div class="mb-3">
+                <label for="dateInput" class="form-label">Date</label>
+                <input type="date" class="form-control" id="dateInput" name="date">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Recap</label>
+                <textarea class="form-control" rows="4" placeholder="Enter your team's awards and brief history here" name="recap"></textarea>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Book Notes</label>
+                <textarea class="form-control" rows="4" placeholder="Enter your team's awards and brief history here" name="review"></textarea>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          
+      <% } else { %>
+        <form action= <%= "/EditForm/" + index %> method="POST">
+            <div class="mb-3">
+              <div>Book Name</div>
+              <input type="input" class="form-control" value="<%= book.book_name %>" name="book_name">
+            </div>
+            <div class="mb-3">
+              <div>Author</div>
+              <input type="input" class="form-control" value="<%= book.author %>" name="author">
+            </div>
+            <div class="mb-3">
+                <div>Rate (n/10)</div>
+              <input type="input" class="form-control" value="<%= book.rate %>" name="rate">
+            </div>
+            <div class="mb-3">
+                <label for="dateInput" class="form-label">Date</label>
+                <input type="date" class="form-control" id="dateInput" value="<%= book.date %>" name="date">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Recap</label>
+                <textarea class="form-control" rows="4" id="recap" name="recap"></textarea>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Book Notes</label>
+                <textarea class="form-control" rows="4" id="review" name="review"></textarea>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <script>
+              function addText() {
+                  document.getElementById("recap").value = "<%= book.recap %>";
+                  document.getElementById("review").value= "<%= book.review %>";
+              }
+              addText();
+            </script>
+      <% } %>
+            
+  
+    </div>
+  </div>
+
+<%- include ("./partials/footer.ejs") %>

@@ -1,0 +1,27 @@
+<%- include("./partials/header") %>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Book Review Card -->
+                <div class="card">
+                    <div class="card-body">
+                        <img src="<%= book.url %>" alt="Book Cover" width="175" height="250">
+                        <h2 class="card-title"><%= book.book_name %></h2>
+                        <p class="card-text">
+                            <strong>Author</strong> <%= book.author %><br>
+                            <strong>Date Read:</strong> <%= book.date %><br>
+                            <strong>How Strongly I Recommend It:</strong> <%= book.rate  %>
+                        </p>
+                        <p class="card-text">
+                            <%= book.recap %>
+                        </p>
+                        <h3>My Notes</h3>
+                        <p class="card-text"><%= book.review %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include ("./partials/footer.ejs") %>
