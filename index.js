@@ -33,7 +33,7 @@ async function getBooks(sortBy) {
     } else {
         book = await db.query("SELECT * FROM books ORDER BY date DESC");
     }
-    console.log(book.rows);
+    //console.log(book.rows);
     books = book.rows;
 }
 
@@ -165,7 +165,6 @@ app.post("/EditForm/:id", async (req, res) => {
                 res.send("Book is invalid").status(400);
             }
         }
-        console.log(1);
         try {
             await db.query("UPDATE books SET review = $1, book_name = $2, recap = $3, date = $4, rate = $5, author = $6 WHERE id = $7",
             [currentBook.review, currentBook.book_name, currentBook.recap, currentBook.date, currentBook.rate, currentBook.author, id]);
