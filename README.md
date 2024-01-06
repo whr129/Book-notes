@@ -4,7 +4,7 @@ Implement EJS as templating and bootstrap as frontend framework, while using exp
 <br>
 follow the following steps to run the project your self!
 <br>
-Get API from https://openlibrary.org/
+Get API from https://openlibrary.org/ and copy the code in queries.sql into postgresql after creating a database called bookNotes and import data.csv
 <br>
 <code> npm install </code> 
 <br>
